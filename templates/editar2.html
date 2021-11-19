@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    {% if titulo %}
+    <title>{{ titulo }}</title>
+    {% else %}
+    <title>LALA-MAJECAX2LU</title>
+    {% endif %}
+
+    <link rel="stylesheet" type="text/css" href='{{ url_for("static",filename="css/estilos.css") }}' />
+    <link rel="stylesheet" type="text/css" href='{{ url_for("static",filename="css/estilo32.css") }}' />
+    <link rel="stylesheet" type="text/css" href='{{ url_for("static",filename="css/crear.css") }}' />
+
+    <link
+      href='{{ url_for("static",filename="img/favicon.png") }}'
+      rel="icon"
+    />
+
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+
+    <!-- Materialize Design Language -->
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Font Awesome Iconos -->
+    <script src="https://kit.fontawesome.com/08d27606be.js" crossorigin="anonymous"></script>
+    <!-- validar contraseñas coinciden -->
+    <script type="text/javaScript">
+      function validcla(){
+            var elmt=document.getElementById('pswtxt').value;
+            var elmt2=document.getElementById('cfpswtxt').value;
+            var elmt3=document.getElementById('pswtxt');
+            var elmt4=document.getElementById('cfpswtxt');
+            if(elmt===elmt2){
+                
+                elmt3.style.backgroundColor='white'
+                elmt4.style.backgroundColor='white'
+            }else{
+                
+                elmt3.style.backgroundColor='red'
+                elmt4.style.backgroundColor='red'
+            }
+
+      }
+
+      function validarFechaNacido(){
+        var today = new Date();
+        var year = today.getFullYear();
+        var fec=document.getElementById('nactxtE').value;
+        var fec2=fec.split('-');
+        if(parseInt(year)-parseInt(fec2[0])>18 || parseInt(year)-parseInt(fec2[0])==18){
+            document.getElementById("res").innerHTML="";
+        }else{
+            document.getElementById("res").innerHTML="!OJO¡ Fecha invalida";
+            document.getElementById("res").style.color='red';
+            document.getElementById("nactxtE").value="";
+        }
+    
+
+      }
+    </script>
+
+  </head>
+  <body>
+    <!-- Inicia Encabezado -->
+    {%if 'id' in session%}
+    <div class="header row s12">
+      <div class="logo">
+        <div class="div-img-logo">
+          <img src='{{ url_for("static",filename="img/headerlogo.png") }}' class="img-logo" />
+        </div>
+        <div class="txt-logo">
+          <a class="title-logo">GRUPO <br> LALA</a>
+        </div>
+      </div>
+      <div class="nav-bar">
+        <div class="menus row">
+          <a class="title-menu menu s2 m4 l6 xl12" href="/vperfil/"><i class="fas fa-user-tie icon-menu"></i>Ver Perfil</a>
+          <a class="title-menu menu s2 m4 l6 xl12" href="/crear/"><i class="fas fa-user-plus icon-menu"></i>Crear Empleado</a>
+          <a class="title-menu menu s2 m4 l6 xl12" href="/inicio/"><i class="fas fa-users icon-menu"></i>Empleados Disponibles</a>
+          <a class="title-menu menu s2 m4 l6 xl12" href="/buscar/"><i class="fas fa-search icon-menu"></i>Buscar Empleados</a>
+        </div>
+      </div>
+      <div class="options">
+        <div class="logo-user">
+          <i class="fas fa-user-circle icon-user"></i>
+        </div>
+        <div class="user-name">
+          {% if 'nom' in session %}
+            <ul id="dropdown2" class="dropdown-content menu-conf">
+              <li><a href="/vperfil/"><i class="fas fa-user-tie"></i>Perfil</a></li>
+              <li><a href="/salir/"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+            </ul>
+            <a class="nameuser dropdown-trigger" href="#!" data-target="dropdown2">
+              {{session['nom']}}
+              <i class="far fa-caret-square-down icon-conf"></i>
+            </a>
+            {% else %}
+            <a class="nameuser">
+              USUARIO
+              <i class="far fa-caret-square-down icon-conf"></i>
+            </a>
+            {% endif %}
+
+        </div>
+      </div>
+    </div>
+    <!-- Termina Encabezado -->
+
+    <!-- Inicia Contenido/Body -->
+    <div class="bodycont">
+      <div class="div-img-cont">
+        <img src='{{ url_for("static",filename="img/logo.png") }}' class="img-cnt responsive-img" />
+      </div>
+      <div class="contenido">
+        <div class="contenido2">
+          <div class="div-subtitle">
+            <h5 class="subtitle">Editar Empleado</h5>
+            <hr>
+          </div>
+          <div class="formulario">
+            <form class="form1" name='Editar' id='Registro' action='/edit/' method='POST'>
+              <div class="div-form3">
+                <div class='ppal-l'><!--aqui-->
+                  <div class='fila'>
+                     
+                    <div class='ancho30'>Tipo de Identificación</div>
+                    <div class="input-field input-select  col s12 w50">
+                  
+                      <select name='tipo_id' required>
+                      
+                        {% if datos[0][1]== 'cc' %}
+                        <option value="cc">Cédula de Ciudadanía</option>
+                        <option value="ce">Cédula de Extranjería</option>
+                        <option value="pasaporte">Pasaporte</option>
+                        {% elif datos[0][1]== 'ce' %}
+                        <option value="ce">Cédula de Extranjería</option>
+                        <option value="cc">Cédula de Ciudadanía</option>
+                        <option value="pasaporte">Pasaporte</option>
+                        {% elif datos[0][1]=='pasaporte' %}
+                        <option value="pasaporte">Pasaporte</option>
+                        <option value="cc">Cédula de Ciudadanía</option>
+                        <option value="ce">Cédula de Extranjería</option>
+                        {%endif%}
+                      
+                      </select>
+                  
+                    </div>
+                  </div>
+                  <div class='fila'>
+                    <div class='ancho30'>No. de Identificación</div>
+                    {% for dat in datos %}
+                    <div class='ancho70'><input  name='id' type='text' class='input-crear' id='idtxted' value="{{dat.0}}" required readonly></div>
+                    {% endfor %}
+                  </div>
+                  
+                  <div class='fila'>
+                    <div class='ancho30'>Nombres</div>
+                    {% for dat in datos %}
+                    <div class='ancho70'><input name='nom' type='text' class='input-crear' id='nomtxtE' value="{{dat.2}}" required/></div>
+                    {% endfor %}
+                  </div>
+                  <div class='fila'>
+                    <div class='ancho30'>Apellidos</div>
+                    {% for dat in datos %}
+                    <div class='ancho70'><input name='apellidos' type='text' class='input-crear' id='apetxtE' value="{{dat.3}}" required/></div>
+                    {% endfor %}
+                  </div>
+                  <div class='fila'>
+                    <div class='ancho30'>Género</div>
+                    <div class='ancho70 input-field input-select'>
+                      <select id="genbox" name="genero" required>
+                        {% if datos[0][4] == 'M' %}
+                        <option  value="M">Masculino</option>
+                        <option  value="F">Femenino</option>
+                        <option  value="NR">No Registra</option>
+                        {% elif datos[0][4] == 'F' %}
+                        <option  value="F">Femenino</option>
+                        <option  value="M">Masculino</option>
+                        <option  value="NR">No Registra</option>
+                        {% elif datos[0][4] == 'NR' %}
+                        <option  value="NR">No Registra</option>
+                        <option  value="F">Femenino</option>
+                        <option  value="M">Masculino</option>
+                        {%endif%}
+                      </select>
+                    </div>
+                  </div>
+                  <div class='fila'>
+                    <div class='ancho30'>Fecha de nacimiento</div>
+                    {% for dat in datos %}
+                    <div class='ancho70'><input name='fecha_nac' type='date' class='input-date' id='nactxtE' onchange="validarFechaNacido()" value="{{dat.5}}" required/></div>
+                    <p id="res"></p>
+                    {% endfor %}
+                  </div>
+                  <div class='fila'> 
+                    <div class='ancho30'>Dirección de Residencia</div>
+                    {% for dat in datos %}
+                    <div class='ancho70'><input name='dir' type='text' class='input-crear' id='dirtxtE' value="{{dat.16}}" required/></div>
+                    {% endfor %}
+                  </div>
+                  <div class='fila'>
+                    <div class='ancho30'>Teléfono de contacto</div>
+                    {% for dat in datos %}
+                    <div class='ancho70'><input name='tel' type='text' class='input-crear' id='teltxt' value="{{dat.15}}" required/></div>
+                    {% endfor %}
+                  </div>
+                  <div class='fila'>
+                    <div class='ancho30'>E-Mail (login username)</div>
+                    {% for dat in datos %}
+                    <div class='ancho70'><input name='ema' type='text' class='input-crear' id='ematxt' value="{{dat.12}}" required readonly/></div>
+                    {% endfor %}
+                  </div>
+                  
+                  <div class='ancho30'>Rol Usuario</div>
+                  <div class='ancho70 input-field input-select'>
+                    <select id="rolbox" name="rol" required>
+                      {% if datos[0][14]=='Cliente' %}
+                      <option  value="Cliente">Cliente</option>
+                      <option  value="Admin">Administrador</option>
+                      {% elif datos[0][14]=='Admin' %}
+                      <option  value="Admin">Administrador</option>
+                      <option  value="Cliente">Cliente</option>
+                      {%endif%}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="ppal-r"><!--aqui-->
+                  <div class='fila'>
+                    <div class='ancho30'>Clave</div>
+                    <div class='ancho70'><input name='cla' type='password' class='input-crear' id='pswtxt' /></div>
+                  </div>
+                  <div class='fila'>
+                    <div class='ancho30'>Confirmar Clave</div>
+                    <div class='ancho70'><input name='cfcla' type='password' class='input-crear' id='cfpswtxt' onkeyup="validcla()"/></div>
+                  </div>
+                  <div class='fila'>
+                    <div class='ancho30'>Dependencia</div>
+                    <div class='ancho70'>
+                      <select id="depbox" name="dependencia" class="input-field input-select" required>
+                        <option value="" disabled selected>Elige una opción...</option>
+                        <option  value="administracion">Administración</option>
+                        <option  value="operaciones">Operaciones</option>
+                        <option  value="gh">Gestión Humana</option>
+                        <option  value="logistica">Logística</option>
+                        <option  value="contratista">Contratista</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class='fila'>
+                    <div class='ancho30'>Cargo</div>
+                    {% for dat in datos %}
+                    <div class='ancho70'><input name='cargo' type='text' class='input-crear' id='cartxt' value="{{dat.9}}" required/></div>
+                    {% endfor %}
+                  </div>
+                  <div class='fila'>
+                    <div class='ancho30'>Tipo de Contrato</div>
+                    <div class='ancho70 input-field input-crear'>
+                      <select id="conbox" name="tipoContrato" required>
+                        {%if datos[0][8]== 'termino fijo' %}
+                        <option  value="termino fijo ">Término Fijo</option>
+                        <option  value="prestacion de servicio">Prestación de Servicios</option>
+                        <option  value="practicante">Practicante</option>
+                        <option  value="indefinido">Término Indefinido</option>
+                        {% elif datos[0][8]== 'prestacion de servicio' %}
+                        <option  value="prestacion de servicio">Prestación de Servicios</option>
+                        <option  value="termino fijo ">Término Fijo</option>
+                        <option  value="practicante">Practicante</option>
+                        <option  value="indefinido">Término Indefinido</option>
+                        {% elif datos[0][8]== 'practicante' %}
+                        <option  value="practicante">Practicante</option>
+                        <option  value="prestacion de servicio">Prestación de Servicios</option>
+                        <option  value="termino fijo ">Término Fijo</option>
+                        <option  value="indefinido">Término Indefinido</option>
+                        {% elif datos[0][8]== 'indefinido' %}
+                        <option  value="indefinido">Término Indefinido</option>
+                        <option  value="practicante">Practicante</option>
+                        <option  value="prestacion de servicio">Prestación de Servicios</option>
+                        <option  value="termino fijo ">Término Fijo</option>
+                        {%endif%}
+                      </select>
+                    </div>
+                  </div>
+                  <div class='fila'>
+                    <div class='ancho30'>Inicio Contrato</div>
+                    {% for dat in datos %}
+                    <div class='ancho70'><input name='fecha_ingreso' type='date' class='input-date' id='initxt' value="{{dat.6}}" required/></div>
+                    {% endfor %}
+                  </div>
+                  <div class='fila'>
+                    <div class='ancho30'>Fin Contrato</div>
+                    {% for dat in datos %}
+                    <div class='ancho70'><input name='fin_contrato' type='date' class='input-date' id='fintxt' value="{{dat.7}}" required/></div>
+                    {% endfor %}
+                  </div>
+                  <div class='fila'>
+                    <div class='ancho30'>Salario Devengado</div>
+                    {% for dat in datos %}
+                    <div class='ancho70'><label>$<input name='salario' type='number' class='input-crear' id='saltxt' value="{{dat.11}}" required/></label></div>
+                    {% endfor %}
+                  </div>
+                  <div class='fila'>
+                    <div class='ancho30'>Observaciones</div>
+                    <div class='ancho70 input-field col s12'>
+                      <textarea name='observacion' class='input-crear materialize-textarea' cols="20" id='obstxt' data-length="200"></textarea>
+                    </div>
+                  </div>
+                  
+                  <div class='fila'>
+                    <div class='c4'>
+                      <input type='submit' id='btnEditar' value='Editar'></button>
+                    </div>
+                    <div class='c2'>&nbsp;</div>
+                    <div class='c4'>
+                      <button><a href="/inicio/" style="text-decoration: none;color: white;font-size:19px;">Cancelar</a></button>
+                    </div>
+                    
+                  </div>
+                  {% for msg in get_flashed_messages() %}
+                  <div class='fila'>{{ msg }}</div>
+                  {% endfor %}
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Termina Contenido -->
+
+    <!-- Inicia Footer o Pie de Pagina -->
+    <div class="footer">
+      <span>Copyright © 2021 Grupo LALA | Universidad del norte | Grupo 32 | equipo 9 | Idioma: Español</span>
+      <img src='{{ url_for("static",filename="img/logo2.png") }}' class="img-footer" />
+    </div>
+    <!-- Termina Footer -->
+
+    <script>
+      $(document).ready(function(){
+        $('.btn-user-edit').click(function(){
+          $('.modal-edit').modal();
+        });
+
+        $('.btn-user-retro').click(function(){
+          $('.modal-retro').modal();
+        });
+
+        $('.btn-user-del').click(function(){
+          $('.modal-del').modal();
+        });
+
+        $('.nameuser').click(function(){
+          if($('#dropdown2').css('display') == 'none'){
+            $('#dropdown2').css('opacity',1);
+            $('#dropdown2').css('display','block');
+          } else {
+            $('#dropdown2').css('opacity',0);
+            $('#dropdown2').css('display','none');
+          }
+        });
+
+        // Initializations
+        $('select').material_select();
+        $('textarea#textarea1').characterCounter();
+        $('.character-counter').css('float','');
+
+        // $('.dropdown-content').addClass('active');
+        // $('.select-dropdown').addClass('active');
+        // $('.dropdown-content').css('display','block');
+        // $('.dropdown-content').css('opacity',1);
+
+      });
+    </script>
+  {%else%}
+    <p>USTED NO SE HA LOGEADO</p>
+    <a href="/entrar/">Ir a Login</a>
+  {%endif%}
+  </body>
+</html>

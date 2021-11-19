@@ -1,0 +1,125 @@
+h1 {
+    font-family               : serif;
+    text-align                : center;
+    background-color          : lightgray;
+    color                     : #377ba8;
+}
+
+.ppal {
+    width                     : 30vw;
+    padding                   : 16px;
+    border-radius             : 10px;
+    background-color          : #ccc;
+    position                  : absolute;
+    margin-top                : 15vh; 
+    margin-left               : 35vw;
+}
+
+.login {
+    width                     : 30vw;
+    padding                   : 16px;
+    border-radius             : 10px;
+    background-color          : rgb(248, 228, 228);
+    position                  : absolute;
+    top                       : 15vh; 
+    left                      : 35vw;
+}
+
+.fila {
+    height                    : 35px;
+}
+
+.c1 {
+    width                     : 10%;
+    display                   : inline;
+    float                     : left;
+    overflow-x                : hidden;
+}
+
+.c2 {
+    width                     : 20%;
+    display                   : inline;
+    float                     : left;
+    overflow-x                : hidden;
+}
+
+.c3 {
+    width                     : 30%;
+    display                   : inline;
+    float                     : left;
+    overflow-x                : hidden;
+}
+
+.c4 {
+    width                     : 40%;
+    display                   : inline;
+    float                     : left;
+    overflow-x                : hidden;
+}
+
+.c5 {
+    width                     : 50%;
+    display                   : inline;
+    float                     : left;
+    overflow-x                : hidden;
+}
+
+.c6 {
+    width                     : 60%;
+    display                   : inline;
+    float                     : left;
+    overflow-x                : hidden;
+}
+
+.c7 {
+    width                     : 70%;
+    display                   : inline;
+    float                     : left;
+    overflow-x                : hidden;
+}
+
+.c8 {
+    width                     : 80%;
+    display                   : inline;
+    float                     : left;
+    overflow-x                : hidden;
+}
+input[type=text], input[type=email], input[type=password] {
+    width                     : 100%;
+}
+
+p, label {
+    text-align                : justify;
+    font-family               : 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+input[type=button], input[type=submit],button {
+    border-color              : #000;
+    border-width              : 1px;
+    border-radius             : 4px 4px 4px 4px;
+    -moz-border-radius        : 4px 4px 4px 4px;
+    -webkit-border-radius     : 4px 4px 4px 4px;
+    color                     : white;
+    cursor                    : pointer;
+    display                   : inline-block;
+    font-size                 : 19px;
+    width                     : 100%;
+    height	                  : 40px;
+    text-align                : center !important;
+    background                : #881b08;
+    background                : -moz-linear-gradient(-45deg, #851506 0%, #eb2208 38%, #882412 73%, #94392d 100%);
+    background                : -webkit-linear-gradient(-45deg, #db240c 0%,#882716 38%,#5f1f19 73%,#d32010 100%);
+    background                : linear-gradient(135deg, #8d1707 0%,#ce301b 38%,#8d1707 73%,#ee2208 100%);
+    filter                    : progid:DXImageTransform.Microsoft.gradient( startColorstr='#074b99', endColorstr='#7db9e8',GradientType=1 );  
+}
+
+input[type=button]:hover, input[type=submit]:hover,button:hover
+{
+    background                :#eb2208;
+    font-weight               : bold;
+    
+}
+
+input:invalid {
+    border                    : 1px solid red;
+}

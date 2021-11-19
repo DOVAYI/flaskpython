@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block contenido %}
+        <form name='flogin' id='flogin' action='/entrar/' method='POST'>
+            <div class='login'>
+                <div class='fila'>
+                    <div class='c3'>{{ form.usr.label }}</div>
+                    <div class='c7'>{{ form.usr(size=40, minlength=5, maxlength=40)}}</div>
+                </div>
+                <div class='fila'>
+                    <div class='c3'>{{ form.pwd.label }}</div>
+                    <div class='c7'>{{ form.pwd(size=40, minlength=5, maxlength=40)}}</div>
+                </div>
+                <div class='fila'>
+                    <a href='/recuperar/'>Olvidé mis datos</a>
+                </div>
+                <div class='fila'><br /><hr /><br /></div>
+                <div class='fila'>
+                    <div class='c8'>&nbsp;</div>
+                    <div class='c2'>{{ form.btn() }}</div>
+                </div>
+            </div>
+            
+        </form>
+{% endblock %}

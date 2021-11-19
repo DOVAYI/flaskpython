@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- Fuentes -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+
+        <link
+            href='{{ url_for("static",filename="img/favicon.png") }}'
+            rel="icon"
+        />
+
+        {% if titulo %}
+        <title>{{ titulo }}</title>
+        {% else %}
+        <title>Página de Prueba</title>
+        {% endif %}
+    </head>
+    <style>
+        body{
+            font-family: 'Source Sans Pro', sans-serif;
+            background-color: #cecdd2;
+        }
+        input[Type=submit] {
+            border:             2px solid rgb(153, 151, 151);
+            border-radius:      10px;
+            background-color:  rgb(141, 39, 39);
+            color:             white;
+            cursor:             pointer;
+            display:            inline-block;
+            font-size:          15px;
+            font-weight         : bold;
+            height:             30px;
+            text-align:         center !important
+        }
+        input[type=submit]:hover {
+            background: rgb(172, 47, 47);
+            color: white;
+            font-weight: bold;
+        }
+        .footer{
+            position: absolute;
+            bottom:0;
+            color: rgba(119, 119, 119, 0.747);
+            padding:5px;
+            right:0;
+        }
+        .img-footer{
+            width:50px;
+            height:50px;
+        }
+        #flogin{
+            height:auto;
+        }
+        .header{
+            width:100%;
+            height:50px;
+            background: #6A1204;
+            display:flex;
+        }
+        .logo{display:flex;}
+        .img-logo{
+            width: 50px;
+            height: 50px;
+            margin-left: 20px;
+        }
+        .logo-body{
+            width: 100%;
+            height: 250px;
+            display: flex;
+        }
+        .img-body{
+            width: 250px;
+            height: auto;
+            margin-left:650px;
+        }
+        .txt-logo{
+            width: 100%;
+            height: 100%;
+            float:right;
+            display: flex;
+            align-items: center;
+        }
+        .title-logo{
+            /* font-family: 'Source Sans Pro', sans-serif; */
+            /* font-size: 25px; */
+            letter-spacing: 2px;
+            word-spacing: 2px;
+            color: #fff;
+            font-weight: bold;
+        }
+    </style>
+
+    <body style='margin: 0 !important;padding:0!important;width: 100%;height:100%'>
+        <div class="header">
+            <div class="logo">
+                <div class="div-img-logo">
+                    <img src='{{ url_for("static",filename="img/logo-blanco.png") }}' class="img-logo" />
+                </div>
+                <div class="txt-logo">
+                    <a class="title-logo">GRUPO <br> LALA</a>
+                  </div>
+            </div>
+        </div>
+        <div class="logo-body">
+            <div class="div-img-logo">
+                <img src='{{ url_for("static",filename="img/logo.png") }}' class="img-body" />
+            </div>
+        </div>
+        <div style='width: 14vw; min-width: 100px; height: 28vh; position: absolute; top: 50vh; left: 41vw; background-color: rgba(255, 255, 255, 0.212) ; border-radius: 10px; padding: 10px;'>
+            <form name='flogin' id='flogin' action='/entrar/' method='POST'>
+                <div></div>
+                <div style='color: rgba(119, 119, 119, 0.842);'>Usuario</div>
+                <div style='padding: 10px'><input type='text' id='nomtxt' name='user' /></div>
+                <div></div>
+                <div style='color: rgba(119, 119, 119, 0.829); '>Contraseña</div>
+                <div style='padding: 10px'><input  type='password' id='contxt' name='pass' /></div>
+
+                <div></div>
+                <div>&nbsp;</div>
+                <div style="text-align: center;"><input type='submit' id='btnLogin' value='Ingresar'></button></div>
+                {% for msg in get_flashed_messages() %}
+                <div class='fila'>{{ msg }}</div>
+                {% endfor %}
+            </form>
+        </div>
+        <div class="footer">
+            Copyright © 2021 Grupo LALA | Universidad del norte | Grupo 32 | equipo 9 | Idioma: Español
+            <img src='{{ url_for("static",filename="img/logo2.png") }}' class="img-footer" />
+          </div>
+    </body>
+</html>

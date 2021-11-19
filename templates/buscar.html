@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  {% if titulo %}
+  <title>{{ titulo }}</title>
+  {% else %}
+  <title>LALA-MAJECAX2LU</title>
+  {% endif %}
+
+  <link rel="stylesheet" type="text/css" href='{{ url_for("static",filename="css/estilos.css") }}' />
+  <link rel="tab icon" type="image/x-icon" href="/static/img/hlogo.ico" />
+  <!-- <link rel="shortcut icon" href='{{ url_for("static",filename="img/favicon.ico") }}' > -->
+
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+
+  <!-- Fuentes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+
+  <!-- Materialize Design Language -->
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Font Awesome Iconos -->
+  <script src="https://kit.fontawesome.com/08d27606be.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <!-- Inicia Encabezado -->
+  {%if 'id' in session%}
+  <div class="header row s12">
+    <div class="logo">
+      <div class="div-img-logo">
+        <img src='{{ url_for("static",filename="img/headerlogo.png") }}' class="img-logo" />
+      </div>
+      <div class="txt-logo">
+        <a class="title-logo">GRUPO <br> LALA</a>
+      </div>
+    </div>
+    <div class="nav-bar">
+      <div class="menus row">
+        <a class="title-menu menu s2 m4 l6 xl12" href="/vperfil/"><i
+            class="fas fa-user-tie icon-menu"></i>Ver Perfil</a>
+        <a class="title-menu menu s2 m4 l6 xl12" href="/crear/"><i class="fas fa-user-plus icon-menu"></i>Crear
+          Empleado</a>
+        <a class="title-menu menu s2 m4 l6 xl12" href="/inicio/"><i class="fas fa-users icon-menu"></i>Empleados
+          Disponibles</a>
+        <a class="title-menu menu s2 m4 l6 xl12" href="/buscar/"><i class="fas fa-search icon-menu"></i>Buscar
+          Empleados</a>
+      </div>
+    </div>
+    <div class="options">
+      <div class="logo-user">
+        <i class="fas fa-user-circle icon-user"></i>
+      </div>
+      <div class="user-name">
+        {% if 'nom' in session %}
+        <ul id="dropdown2" class="dropdown-content menu-conf">
+          <li><a href="#!"><i class="fas fa-user-tie"></i>Perfil</a></li>
+          <li><a href="/salir/"><i class="fas fa-sign-out-alt"></i>Cerrar Sesión</a></li>
+        </ul>
+        <a class="nameuser dropdown-trigger" href="#!" data-target="dropdown2">
+          {{session['nom']}}
+          <i class="far fa-caret-square-down icon-conf"></i>
+        </a>
+        {% else %}
+        <a class="nameuser">
+          USUARIO
+          <i class="far fa-caret-square-down icon-conf"></i>
+        </a>
+        {% endif %}
+
+      </div>
+    </div>
+  </div>
+  <!-- Termina Encabezado -->
+
+  <!-- Inicia Contenido/Body -->
+  <div class="bodycont">
+    <div class="div-img-cont">
+      <img src='{{ url_for("static",filename="img/logo.png") }}' class="img-cnt responsive-img" />
+    </div>
+    <div class="contenido">
+      <div class="contenido2">
+        <div class="div-subtitle">
+          <h5 class="subtitle">Buscar Empleado</h5>
+          <hr>
+        </div>
+        <div class="formulario">
+          <form name="form1" id="form1" action="/buscar/" method="POST" class="form1">
+            <div class="div-form">
+              <div class="div-search input-field">
+                <i class="fas fa-search icon-search"></i>
+                <input name="buscarTxt" id="buscar" class="input-search validate" type="text"
+                  placeholder="Buscar por cédula o nombre..." value="{{buscar}}" />
+
+                <button class="btn-search" type="submit">Buscar
+                  <i class="material-icons left btn-left">search</i>
+                </button>
+              </div>
+            </div>
+            <div class="div-form2">
+              <table class="responsive-table table-form2">
+                <thead>
+                  <tr>
+                    <th>Identificación</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Tipo Contrato</th>
+                    <th><i class="fas fa-tools"></i></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!--
+                      {% for dat in messages %}
+                      <div class='fila border blue'>
+                       <div class='c2'>{{ dat[0] }}</div>
+                      <div class='c2'>{{ dat[2] }}</div>
+                     <div class='c6'>{{ dat[3] }}</div>
+                     </div>
+                                 {% endfor %}
+
+                    -->
+                  {% if res==0 %}
+                  <tr><td><h5>No se encontraron empleados</h5></td></tr>
+                  {% else %}
+                  {% for dat in res %}
+                  <tr>
+                    <td>{{dat[0]}}</td>
+                    <td>{{dat[1]}}</td>
+                    <td>{{dat[2]}}</td>
+                    <td>{{dat[3]}}</td>
+                    <td>
+                      <a data-toggle="modal" data-target="#modalEdit"
+                        class="btn modal-trigger waves-effect btn-user-edit" href="#modalEdit" title="Editar"><i
+                          class="material-icons icon-table">edit</i></a>
+                      <a data-toggle="modal" data-target="#modalRetro"
+                        class="btn modal-trigger waves-effect btn-user-retro" href="#modalRetro"
+                        title="Generar Retroalimentación"><i class="material-icons icon-table">folder_shared</i></a>
+                      <a data-toggle="modal" data-target="#modalDel" class="btn modal-trigger waves-effect btn-user-del"
+                        href="#modalDel" title="Eliminar"><i class="material-icons icon-table">delete_forever</i></a>
+                    </td>
+                  </tr>
+                  {% endfor %}
+                  {% endif %}
+                </tbody>
+              </table>
+
+              <!-- Modal Trigger -->
+              <!--<a class="waves-effect waves-light btn modal-trigger" href="#modalEdit">Modal</a> -->
+
+              <!-- Modal Editar -->
+              <div id="modalEdit" class="modal modal-edit">
+                <div class="modal-content">
+                  <h4>Editar Usuario</h4>
+                  <hr>
+                  <div class="modal-content modal-content2">
+
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <a class="waves-effect btn gold lighten-1">Editar</a>
+                  <a class="waves-effect modal-close btn red darken-1">Cancelar</a>
+                </div>
+              </div>
+
+              <!-- Modal Generar Retroalimentación -->
+              <div id="modalRetro" class="modal modal-retro">
+                <div class="modal-content">
+                  <h4>Generar Retroalimentación</h4>
+                  <hr>
+                  <div class="modal-content modal-content2">
+                    <div class="mcontent-l">
+                      <div class="mcontent">
+                        <label for="valp">Valores Personales</label>
+                        <p class="range-field">
+                          <input type="range" id="valp" min="0" max="10" />
+                        </p>
+                      </div>
+                      <div class="mcontent">
+                        <label for="tee">Trabajo en Equipo</label>
+                        <p class="range-field">
+                          <input type="range" id="tee" min="0" max="10" />
+                        </p>
+                      </div>
+                      <div class="mcontent">
+                        <label for="pyo">Planeación y Organización</label>
+                        <p class="range-field">
+                          <input type="range" id="pyo" min="0" max="10" />
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mcontent-r">
+                      <div class="mcontent">
+                        <label for="mdt">Manejo del Tiempo</label>
+                        <p class="range-field">
+                          <input type="range" id="mdt" min="0" max="10" />
+                        </p>
+                      </div>
+                      <div class="mcontent">
+                        <label for="ads">Actitud de Servicio</label>
+                        <p class="range-field">
+                          <input type="range" id="ads" min="0" max="10" />
+                        </p>
+                      </div>
+                      <div class="mcontent">
+                        <label for="emp">Empatía</label>
+                        <p class="range-field">
+                          <input type="range" id="emp" min="0" max="10" />
+                        </p>
+                      </div>
+                    </div>
+                    <div class="mcontent">
+                      <textarea id="textarea1" class="materialize-textarea"></textarea>
+                      <label for="textarea1" class="lbl-obs">Observaciones</label>
+                    </div>
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <a class="waves-effect btn teal lighten-1">Generar</a>
+                  <a class="waves-effect modal-close btn red darken-1">Cancelar</a>
+                </div>
+              </div>
+
+              <!-- Modal Eliminar -->
+              <div id="modalDel" class="modal modal-del">
+                <div class="modal-content">
+                  <h4>Eliminar Usuario</h4>
+                  <hr>
+                  <div class="modal-content modal-content2">
+
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <a class="waves-effect btn teal lighten-1">Eliminar</a>
+                  <a class="waves-effect modal-close btn red darken-1">Cancelar</a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Termina Contenido -->
+
+  <!-- Inicia Footer o Pie de Pagina -->
+  <div class="footer">
+    <span>Copyright © 2021 Grupo LALA | Universidad del norte | Grupo 32 | equipo 9 | Idioma: Español</span>
+    <img src='{{ url_for("static",filename="img/logo2.png") }}' class="img-footer" />
+  </div>
+  <!-- Termina Footer -->
+
+  <script>
+    $(document).ready(function () {
+      $('.btn-user-edit').click(function () {
+        $('.modal-edit').modal();
+      });
+
+      $('.btn-user-retro').click(function () {
+        $('.modal-retro').modal();
+      });
+
+      $('.btn-user-del').click(function () {
+        $('.modal-del').modal();
+      });
+
+      $('.nameuser').click(function () {
+        if ($('#dropdown2').css('display') == 'none') {
+          $('#dropdown2').css('opacity', 1);
+          $('#dropdown2').css('display', 'block');
+        } else {
+          $('#dropdown2').css('opacity', 0);
+          $('#dropdown2').css('display', 'none');
+        }
+      });
+
+    });
+  </script>
+  {%else%}
+  <p>USTED NO SE HA LOGEADO</p>
+  <a href="/entrar/">Ir a Login</a>
+  {%endif%} 
+</body>
+
+</html>

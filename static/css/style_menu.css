@@ -1,0 +1,383 @@
+
+body{
+  margin: 0;
+  padding: 0;
+  background:#C7C6CA;
+}
+
+.header{
+  /*background: rgb(165,54,9);
+  background: linear-gradient(90deg, rgba(165,54,9,1) 0%, rgba(121,15,15,1) 26%, rgba(121,15,15,1) 76%, rgba(165,54,9,1) 100%);
+  */
+  width: 100%;
+  height: 90px;
+  background:#6A1204;
+  display:flex;
+}
+
+.logo{
+  width: 20%;
+  height: 100%;
+  display:flex;
+  padding-left: 10px;
+}
+
+.div-img-logo{
+  width: 50%;
+  height: 100%;
+  padding-left: 15px;
+  float:left;
+}
+
+.img-logo{
+  width: 90px;
+  height: 100%;
+}
+
+.txt-logo{
+  width: 100%;
+  height: 100%;
+  float:right;
+  display: flex;
+  align-items: center;
+}
+
+.title-logo{
+  font-family: "Dosis",sans-serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  color: #fff;
+  font-weight: normal;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  padding: 2px;
+  text-align: left;
+}
+
+.nav-bar{
+  width: 60%;
+  height: auto;
+  padding: 20px;
+}
+
+.options{
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.menus{
+  width: 100%;
+  height: 100%;
+  display:flex;
+  align-items: center;
+}
+
+.menu{
+  width: auto;
+  height: 10px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  border: solid 2px #C7C6CA;
+  border-radius: 20px;
+  margin-right: 10px;
+  font-family: "Dosis",sans-serif;
+  font-size:15px;
+  color: #fff;
+  text-decoration: none;
+}
+
+.icon-menu{
+  color: #fff;
+  margin-right:5px;
+}
+
+.icon-user{
+  color: #fff;
+  margin-right:5px;
+}
+
+.bodycont{
+  margin:20px;
+  text-align: center;
+}
+
+.img-cnt{
+  width:20%;
+  height:20%;
+  margin-top:50px;
+  opacity: 0.3;
+}
+
+.options{
+  width: 20%;
+  height: auto;
+  padding: 10px;
+}
+
+.footer{
+  position: absolute;
+  bottom:0;
+  color: rgba(119, 119, 119, 0.747);
+  padding:5px;
+  right:0;
+}
+
+.menu:hover{
+  background:#C7C6CA;
+  color:#6A1204;
+}
+
+.menu:hover .icon-menu{
+  color: #6A1204;
+}
+
+.logo-user{
+  width: auto;
+  height: auto;
+  font-size: 26px;
+}
+
+.user-name{
+  width: auto;
+  height: auto;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.nameuser{
+  color:#fff;
+  font-family: "Dosis",sans-serif;
+  font-size:14px;
+}
+
+.icon-conf{
+  float:right;
+  margin-left:5px;
+  margin-top:3px;
+}
+
+.nameuser:hover{
+  cursor:pointer;
+}
+
+.img-footer{
+  width:50px;
+  height:50px;
+}
+
+.logo:hover{
+  cursor:pointer;
+}
+caption{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: large;
+  color: #6A1204;
+  
+}
+.tabla {
+  
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 20%;
+  left: 22%;
+  
+}
+.filas td{
+  border: solid #6A1204 2px ;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 20px;
+  padding-right: 20px;
+  text-align: center;
+  color: #6A1204;
+  
+  
+}
+.filas th{
+  background-color: #6A1204;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: solid #6A1204 2px ;
+  text-align: center;
+  color: #fff;
+  
+}
+
+
+@media only screen and (max-width: 576px) {
+  .header{
+    height:280px;
+    display:block !important;
+  }
+
+  .logo{
+    width:100% !important;
+    height:100px !important;
+    margin-left: 200px !important;
+  }
+
+  .img-logo{
+    width: 60px !important;
+    height: 70px !important;
+  }
+
+  .txt-logo{
+    display:block;
+    padding-top: 20px !important;
+  }
+
+  .nav-bar{
+    width: 100% !important;
+    height: 80px !important;
+    padding: 20px !important;
+    padding-left: 70px !important;
+  }
+
+  .options{
+    width: 100% !important;
+    height: 70px !important;
+    padding-left: 200px !important;
+  }
+
+  .nameuser{
+    white-space: nowrap !important;
+    font-size: 12px !important;
+  }
+
+  .title-menu{
+    font-size: 10px !important;
+    padding: 15px !important;
+  }
+
+  .icon-menu{
+    font-size: 16px !important;
+  }
+
+  .icon-user{
+    font-size: 20px !important;
+  }
+
+  .icon-conf{
+    font-size: 16px !important;
+    margin:0px !important;
+    padding-left:5px !important;
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+  .logo{
+    width:auto;
+  }
+
+  .nav-bar{
+    width: auto !important;
+  }
+
+  .options{
+    width: auto !important;
+  }
+
+  .img-logo{
+    width: 50px !important;
+    height: 70px !important;
+    margin-left:10px !important;
+    margin-top:10px !important;
+  }
+
+  .nameuser{
+    width:auto;
+    white-space: nowrap !important;
+    font-size: 10px !important;
+  }
+
+  .icon-menu{
+    font-size: 14px !important;
+  }
+
+  .icon-user{
+    font-size: 22px !important;
+  }
+
+  .icon-conf{
+    font-size: 16px !important;
+    padding-left:5px !important;
+  }
+
+  .title-menu{
+    font-size: 11px !important;
+    padding:auto;
+    white-space: nowrap !important;
+  }
+
+  .title-logo{
+    font-size: 12px !important;
+    padding:auto;
+  }
+
+  .footer{
+    font-size: 10px !important;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+
+  .logo{
+    width:auto;
+  }
+
+  .nav-bar{
+    width: auto;
+    height:100%;
+  }
+
+  .options{
+    width: auto;
+  }
+
+  .img-logo{
+    width: 70px;
+    height: 90px;
+  }
+
+  .title-logo{
+    font-size: 16px;
+  }
+
+  .img-logo{
+    width: 80px;
+    height: 100%;
+    margin-left:10px;
+  }
+
+  .title-menu{
+    font-size: 12px;
+    white-space: nowrap;
+  }
+
+  .icon-menu{
+    font-size: 14px !important;
+  }
+
+  .nameuser{
+    width:auto;
+    white-space: nowrap;
+    font-size: 12px;
+  }
+
+  .icon-conf{
+    font-size: 16px !important;
+    padding-left:5px !important;
+  }
+}
+

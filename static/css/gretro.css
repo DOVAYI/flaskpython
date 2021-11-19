@@ -1,0 +1,56 @@
+.form-retro{
+  width: 100%;
+  height: auto;
+  padding-right:20px;
+}
+
+.input-field{
+  margin-top:0px !important;
+  margin-bottom:40px !important;
+}
+
+.fila{
+  width:auto;
+  height:auto;
+  margin-top:20px !important;
+}
+
+.dropdown-content li>span{
+  color: #6A1204 !important;
+}
+
+label{
+  font-size: 15px !important;
+  color:#a3a3af !important;
+  font-weight: bold !important;
+}
+
+.mcontent{
+  margin-bottom:20px !important;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  background-color: #6A1204 !important;
+}
+input[type=range]::-moz-range-thumb {
+  background-color: #6A1204 !important;
+}
+input[type=range]::-ms-thumb {
+  background-color: #6A1204 !important;
+}
+
+/***** These are to edit the thumb and the text inside the thumb *****/
+input[type=range] + .thumb {
+  background-color: #dedede !important;
+}
+input[type=range] + .thumb.active .value {
+  color: #6A1204 !important;
+}
+
+span > .value{
+  display:none !important;
+}
+
+input[type=range] + .thumb.active .value {
+  display:block !important;
+}
